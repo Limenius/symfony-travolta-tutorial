@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Movie list{% endblock %}
+
+{% block body %}
+    {% for movie in movies %}
+        <div class="movie"/>
+            <h2><a href="/movie/{{movie.id}}">{{ movie.name }}</a></h2>
+            <p>{{ movie.director }}</p>
+            <p>{{ movie.year }}</p>
+            <img src="/images/{{movie.picture}}">
+        </div>
+    {% else %}
+        There are no movies.
+    {% endfor %}
+{% endblock %}
