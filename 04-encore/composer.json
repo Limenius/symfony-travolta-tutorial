@@ -11,8 +11,10 @@
         "symfony/console": "^3.3",
         "symfony/framework-bundle": "^3.3",
         "symfony/orm-pack": "^1.0",
+        "symfony/profiler-pack": "^1.0",
         "symfony/twig-bundle": "^3.3",
         "symfony/web-server-bundle": "^3.3",
+        "symfony/webpack-encore-pack": "^1.0",
         "symfony/yaml": "^3.3"
     },
     "require-dev": {

@@ -28,13 +28,10 @@ class MovieController extends Controller
      */
     public function movie(int $movieId)
     {
-        $movie = $this->getDoctrine()
-            ->getRepository(Movie::class)
-            ->find($movieId);
-
+        $em = $this->getDoctrine()->getManager();
+        
         return $this->render('movies/movie.html.twig', [
-            'movie' => $movie,
+            'movie' => $em->getRepository(Movie::class)->findOneWithActors($movieId),
         ]);
     }
-
 }
