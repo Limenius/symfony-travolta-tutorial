@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New enquiry{% endblock %}
+
+{% block body %}
+    <div class="form-container">
+        <div class="form-holder">
+            <h1>New enquiry</h1>
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}
