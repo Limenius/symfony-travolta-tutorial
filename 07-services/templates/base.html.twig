@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+        <link rel="stylesheet" href="{{ asset('build/css/app.css') }}">
+        <link href="https://fonts.googleapis.com/css?family=Lato|Oleo+Script" rel="stylesheet">
+    </head>
+    <body class="site">
+        <header>
+        {% include 'logo.html.twig' %}
+        </header>
+        <div class="main">
+            <div class="container">
+                {% for flash_message in app.session.flashBag.get('notice') %}
+                    <div class="flash-notice">
+                        {{ flash_message }}
+                    </div>
+                {% endfor %}
+                {% block body %}{% endblock %}
+            </div>
+        </div>
+        <footer>
+            <div class="container">
+                <a href="{{path('enquiry')}}"/>Got questions?</a>
+            </div>
+        </footer>
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>
