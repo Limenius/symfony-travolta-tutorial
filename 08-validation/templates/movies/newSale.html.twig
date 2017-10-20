@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Book tickets for {{movie.name}}{% endblock %}
+
+{% block body %}
+    <div class="movie">
+        <div class="header"><img src="{{asset('images/'~movie.picture)}}"></div>
+        <div class="movie-details">
+            <div class="movie-header">
+                <div class="title">{{ movie.name }}</div>
+                <div class="year">{{ movie.year }}</div>
+            </div>
+            <div class="directed">
+                <div class="directed-by">
+                    Directed by
+                </div>
+                <div class="director">
+                    <p>{{ movie.director }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="form-container">
+            <div class="form-holder">
+                <h1>Book tickets</h1>
+                {{ form_start(form) }}
+                {{ form_widget(form) }}
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
