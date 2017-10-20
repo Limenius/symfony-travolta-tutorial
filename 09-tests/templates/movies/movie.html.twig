@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{movie.name}}{% endblock %}
+
+{% block body %}
+    <div class="movie">
+        <div class="header"><img src="{{asset('images/'~movie.picture)}}"></div>
+        <div class="movie-details">
+            <div class="movie-header">
+                <div class="title">{{ movie.name }}</div>
+                <div class="year">{{ movie.year }}</div>
+            </div>
+            <div class="directed">
+                <div class="directed-by">
+                    Directed by
+                </div>
+                <div class="director">
+                    <p>{{ movie.director }}</p>
+                </div>
+            </div>
+            <a class="book button" href="{{path('book', {'movieId': movie.id})}}"/>Book Tickets</a>
+        </div>
+        <div class="list">
+            {% for actor in movie.actors %}
+                <div class="item">
+                    <img alt={{actor.name}} src="{{ asset('images/'~actor.picture) }}">
+                    <div class="item-title">{{ actor.name }}</div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
