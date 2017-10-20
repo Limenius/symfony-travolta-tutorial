@@ -55,6 +55,12 @@ class Movie
         return Movie::ROOM_ROWS * Movie::SEATS_PER_ROW - count($this->tickets);
     }
 
+    public function __construct()
+    {
+        $this->actors = new ArrayCollection();
+        $this->tickets = new ArrayCollection();
+    }
+
     public function getTickets()
     {
         return $this->tickets;
@@ -67,10 +73,6 @@ class Movie
         return $this;
     }
 
-    public function __construct()
-    {
-        $this->actors = new ArrayCollection();
-    }
 
     public function getId()
     {
