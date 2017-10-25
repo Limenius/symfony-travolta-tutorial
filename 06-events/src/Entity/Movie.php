@@ -47,6 +47,15 @@ class Movie
     */
     private $tickets;
 
+    /**
+     * Constructor.
+     */
+    public function __construct()
+    {
+        $this->actors = new ArrayCollection();
+        $this->tickets = new ArrayCollection();
+    }
+
     public function getTickets()
     {
         return $this->tickets;
@@ -57,14 +66,6 @@ class Movie
         $this->tickets[] = $ticket;
 
         return $this;
-    }
-
-    /**
-     * Constructor.
-     */
-    public function __construct()
-    {
-        $this->actors = new ArrayCollection();
     }
 
     public function getId()
