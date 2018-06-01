@@ -1,9 +1,9 @@
 <?php
 namespace App\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\ArrayCollection;
 use ApiPlatform\Core\Annotation\ApiResource;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation as Serializer;
 
 /**
@@ -44,6 +44,22 @@ class Actor
         $this->movies = new ArrayCollection();
     }
 
+    public function addMovie(Movie $movie)
+    {
+        $this->movies[] = $movie;
+    }
+
+    public function removeMovie(Movie $movie)
+    {
+        $this->movies->removeElement($movie);
+        return $this;
+    }
+
+    public function getMovies()
+    {
+        return $this->movies;
+    }
+
     public function __toString()
     {
         return $this->getName();
@@ -78,13 +94,4 @@ class Actor
         return $this;
     }
 
-    public function addMovie(Movie $movie)
-    {
-        $this->movies[] = $movie;
-    }
-
-    public function getMovies()
-    {
-        return $this->movies;
-    }
 }

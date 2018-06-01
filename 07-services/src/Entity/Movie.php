@@ -1,8 +1,8 @@
 <?php
 namespace App\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\MovieRepository")
@@ -43,14 +43,10 @@ class Movie
     private $actors;
 
     /**
-    * @ORM\OneToMany(targetEntity="Ticket", mappedBy="movie")
-    */
+     * @ORM\OneToMany(targetEntity="Ticket", mappedBy="movie")
+     */
     private $tickets;
 
-
-    /**
-     * Constructor.
-     */
     public function __construct()
     {
         $this->actors = new ArrayCollection();
@@ -65,6 +61,27 @@ class Movie
     public function addTicket(Ticket $ticket)
     {
         $this->tickets[] = $ticket;
+
+        return $this;
+    }
+
+    public function getActors()
+    {
+        return $this->actors;
+    }
+
+    public function addActor(Actor $actor)
+    {
+        $actor->addMovie($this);
+        $this->actors[] = $actor;
+
+        return $this;
+    }
+
+    public function removeActor(Actor $actor)
+    {
+        $this->actors->removeElement($actor);
+        $actor->setMovie(null);
 
         return $this;
     }
@@ -122,16 +139,4 @@ class Movie
         return $this;
     }
 
-    public function getActors()
-    {
-        return $this->actors;
-    }
-
-    public function addActor(Actor $actor)
-    {
-        $actor->addMovie($this);
-        $this->actors[] = $actor;
-
-        return $this;
-    }
 }

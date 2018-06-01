@@ -5,8 +5,8 @@
 
 namespace App\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -33,9 +33,6 @@ class Sale
      */
     private $tickets;
 
-    /**
-     * Constructor.
-     */
     public function __construct()
     {
         $this->tickets = new ArrayCollection();
@@ -46,32 +43,16 @@ class Sale
         return $this->getFullName();
     }
 
-    /**
-     * getId.
-     *
-     * @return int
-     */
     public function getId()
     {
         return $this->id;
     }
 
-    /**
-     * getFullName.
-     *
-     * @return string
-     */
     public function getFullName()
     {
         return $this->fullName;
     }
 
-    /**
-     * setFullName
-     *
-     * @param string $fullName
-     * @return Movie
-     */
     public function setFullName(string $fullName)
     {
         $this->fullName = $fullName;
@@ -79,23 +60,11 @@ class Sale
         return $this;
     }
 
-    /**
-     * getTickets.
-     *
-     * @return ArrayCollection
-     */
     public function getTickets()
     {
         return $this->tickets;
     }
 
-    /**
-     * Add ticket
-     *
-     * @param Ticket $ticket
-     *
-     * @return Sale
-     */
     public function addTicket(Ticket $ticket)
     {
         $this->tickets[] = $ticket;

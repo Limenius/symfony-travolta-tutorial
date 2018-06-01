@@ -1,18 +1,29 @@
 <?php
 namespace App\Controller;
 
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Routing\Annotation\Route;
-use App\Form\SaleType;
-use App\Form\EnquiryType;
+use App\Entity\Enquiry;
 use App\Entity\Movie;
 use App\Entity\Sale;
-use App\Entity\Enquiry;
+use App\Form\EnquiryType;
+use App\Form\SaleType;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 
 class MovieController extends Controller
 {
+    /**
+     * @Route("/movie/{movieId}", name="movie")
+     */
+    public function movie(int $movieId)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        return $this->render('movies/movie.html.twig', [
+            'movie' => $em->getRepository(Movie::class)->findOneWithActors($movieId),
+        ]);
+    }
+
     /**
      * @Route("/", name="index")
      */
@@ -28,18 +39,6 @@ class MovieController extends Controller
     }
 
     /**
-     * @Route("/movie/{movieId}", name="movie")
-     */
-    public function movie(int $movieId)
-    {
-        $em = $this->getDoctrine()->getManager();
-        
-        return $this->render('movies/movie.html.twig', [
-            'movie' => $em->getRepository(Movie::class)->findOneWithActors($movieId),
-        ]);
-    }
-
-    /**
      * @Route("/movie/{movieId}/book", name="book")
      */
     public function newSale(Request $request, $movieId)
@@ -50,31 +49,31 @@ class MovieController extends Controller
             ->find($movieId);
 
         $form = $this->createForm(SaleType::class, $sale);
-    
+
         $form->handleRequest($request);
-    
+
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($sale);
             $em->flush();
-        
+
             $this->addFlash(
                 'notice',
                 'Thank you for your sale!'
             );
-        
+
             return $this->redirectToRoute('index');
         }
-    
+
         return $this->render('movies/newSale.html.twig', [
             'form' => $form->createView(),
             'movie' => $movie,
         ]);
     }
 
-    /**
-     * @Route("/enquiry", name="enquiry")
-     */
+/**
+ * @Route("/enquiry", name="enquiry")
+ */
     public function newEnquiry(Request $request)
     {
         $enquiry = new Enquiry();
@@ -100,4 +99,5 @@ class MovieController extends Controller
             'form' => $form->createView(),
         ]);
     }
+
 }

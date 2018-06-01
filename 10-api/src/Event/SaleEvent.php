@@ -1,9 +1,10 @@
 <?php
+
 namespace App\Event;
 
-use Symfony\Component\EventDispatcher\Event;
-use App\Entity\Sale;
 use App\Entity\Movie;
+use App\Entity\Sale;
+use Symfony\Component\EventDispatcher\Event;
 
 class SaleEvent extends Event
 {

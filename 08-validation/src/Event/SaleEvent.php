@@ -1,13 +1,11 @@
 <?php
+
 namespace App\Event;
 
-use Symfony\Component\EventDispatcher\Event;
-use App\Entity\Sale;
 use App\Entity\Movie;
+use App\Entity\Sale;
+use Symfony\Component\EventDispatcher\Event;
 
-/**
- * The Sale Event is dispatched every time a new sale is registered
- */
 class SaleEvent extends Event
 {
     const NAME = 'sale.created';

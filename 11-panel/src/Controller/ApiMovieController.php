@@ -1,21 +1,18 @@
 <?php
 namespace App\Controller;
 
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Routing\Annotation\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use App\Form\SaleType;
-use App\Form\EnquiryType;
 use App\Entity\Movie;
 use App\Entity\Sale;
-use App\Entity\Enquiry;
-use App\Entity\Ticket;
 use App\Event\SaleEvent;
+use App\Form\SaleType;
 use App\Logger\SaleLogger;
-use Symfony\Component\Serializer\Serializer;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\SerializerInterface;
 
 class ApiMovieController extends Controller
 {
@@ -23,7 +20,7 @@ class ApiMovieController extends Controller
      * @Route("/api/movies", name="get_movies")
      * @Method({"GET"})
      */
-    public function index(Serializer $serializer)
+    public function index(SerializerInterface $serializer)
     {
         $movies = $this->getDoctrine()
             ->getRepository(Movie::class)
@@ -36,7 +33,7 @@ class ApiMovieController extends Controller
      * @Route("/api/movies/{movieId}", name="get_movie")
      * @Method({"GET"})
      */
-    public function movie(Serializer $serializer, int $movieId)
+    public function movie(SerializerInterface $serializer, int $movieId)
     {
         $em = $this->getDoctrine()->getManager();
         $movie = $em->getRepository(Movie::class)->findOneWithActors($movieId);

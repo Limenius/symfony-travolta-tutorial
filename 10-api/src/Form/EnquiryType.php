@@ -1,15 +1,14 @@
 <?php
 namespace App\Form;
 
-use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\OptionsResolver\OptionsResolver;
-
 use App\Entity\Enquiry;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class EnquiryType extends AbstractType
 {
@@ -21,7 +20,7 @@ class EnquiryType extends AbstractType
             ->add('question', TextareaType::class)
             ->add('save', SubmitType::class, array('label' => 'Send enquiry'))
             ->getForm();
-        ;
+
     }
 
     public function configureOptions(OptionsResolver $resolver)

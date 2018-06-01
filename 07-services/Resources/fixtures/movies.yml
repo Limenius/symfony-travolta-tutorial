@@ -1,0 +1,119 @@
+App\Entity\Actor:
+  travolta:
+    name: 'John Travolta'
+    picture: 'travolta.jpg'
+  thurman:
+    name: 'Uma Thurman'
+    picture: 'thurman.jpg'
+  jackson:
+    name: 'Samuel L. Jackson'
+    picture: 'jackson.jpg'
+  keitel:
+    name: 'Harvey Keitel'
+    picture: 'keitel.jpg'
+  newtonjohn:
+    name: 'Olivia Newton-John'
+    picture: 'newtonjohn.jpg'
+  channing:
+    name: 'Stockhard Channing'
+    picture: 'channing.jpg'
+  bullock:
+    name: 'Sandra Bullock'
+    picture: 'bullock.jpg'
+  kidman:
+    name: 'Nicole Kidman'
+    picture: 'kidman.jpg'
+  mcgregor:
+    name: 'Ewan McGregor'
+    picture: 'mcgregor.jpg'
+  leguizamo:
+    name: 'John Leguizamo'
+    picture: 'leguizamo.jpg'
+  cage:
+    name: 'Nicholas Cage'
+    picture: 'cage.jpg'
+  lerner:
+    name: 'Michael Lerner'
+    picture: 'lerner.jpg'
+  swain:
+    name: 'Dominique Swain'
+    picture: 'swain.jpg'
+  stallone:
+    name: 'Sylvester Stallone'
+    picture: 'stallone.jpg'
+  snipes:
+    name: 'Wesley Snipes'
+    picture: 'snipes.jpg'
+  portman:
+    name: 'Natalie Portman'
+    picture: 'portman.jpg'
+  gigandet:
+    name: 'Cam Gigandet'
+    picture: 'gigandet.jpg'
+  willis:
+    name: 'Bruce Willis'
+    picture: 'willis.jpg'
+
+App\Entity\Movie:
+  pulp-fiction:
+    name: 'Pulp Fiction'
+    director: 'Quentin Tarantino'
+    year: '1994'
+    picture: 'pulp-fiction.jpg'
+    actors: ["@travolta", "@thurman", "@jackson", "@keitel", "@willis"]
+  grease:
+     name: 'Grease'
+     director: Randal Kleiser
+     year: 1978
+     picture: 'grease.jpg'
+     actors: ["@travolta", "@thurman", "@newtonjohn", "@channing"]
+
+  practical-magic:
+     name: 'Practical Magic'
+     director: 'Griffin Dunne'
+     year: 1998
+     picture: 'practical-magic.jpg'
+     actors: ["@bullock", "@kidman", "@channing"]
+
+  moulin-rouge:
+    name: 'Moulin Rouge!'
+    director: "Baz Luhrman"
+    year: 2001
+    picture: 'moulin-rouge.jpg'
+    actors: ["@kidman", "@mcgregor", "@leguizamo"]
+  amos-andrew:
+    name: 'Amos & Andrew'
+    director: 'E. Max Frye'
+    year: 1993
+    picture: 'amos-and-andrew.jpg'
+    actors: ['@cage', '@jackson', '@lerner']
+  face-off:
+    name: 'Face Off'
+    director: 'John Woo'
+    year: 1997
+    picture: 'face-off.jpg'
+    actors: ['@travolta', '@cage', '@swain']
+  demolition-man:
+    name: 'Demolition Man'
+    director: 'Randal Kleiser'
+    year: 1993
+    picture: 'demolition-man.jpg'
+    actors: ['@stallone', '@bullock', '@snipes']
+  star-wars:
+    name: 'Star Wars: Episode I'
+    director: 'George Lucas'
+    year: 1999
+    picture: 'episode-1.jpg'
+    actors: ['@mcgregor', '@portman', '@jackson']
+  be-cool:
+    name: 'Be Cool'
+    director: 'F. Gary Gray'
+    year: 2005
+    picture: 'be-cool.jpg'
+    actors: ['@travolta', '@thurman', '@keitel']
+  trespass:
+    name: 'Trespass'
+    director: 'Joel Schumacher'
+    year: 2011
+    picture: 'trespass.jpg'
+    actors: ['@kidman', '@cage', '@gigandet']

@@ -1,8 +1,8 @@
 <?php
 namespace App\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\MovieRepository")
@@ -10,6 +10,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class Movie
 {
+
     const ROOM_ROWS = 5;
     const SEATS_PER_ROW = 5;
 
@@ -46,19 +47,19 @@ class Movie
     private $actors;
 
     /**
-    * @ORM\OneToMany(targetEntity="Ticket", mappedBy="movie")
-    */
+     * @ORM\OneToMany(targetEntity="Ticket", mappedBy="movie")
+     */
     private $tickets;
-
-    public function getAvailableSeats()
-    {
-        return Movie::ROOM_ROWS * Movie::SEATS_PER_ROW - count($this->tickets);
-    }
 
     public function __construct()
     {
         $this->actors = new ArrayCollection();
         $this->tickets = new ArrayCollection();
+    }
+
+    public function getAvailableSeats()
+    {
+        return Movie::ROOM_ROWS * Movie::SEATS_PER_ROW - count($this->tickets);
     }
 
     public function getTickets()
@@ -73,6 +74,26 @@ class Movie
         return $this;
     }
 
+    public function getActors()
+    {
+        return $this->actors;
+    }
+
+    public function addActor(Actor $actor)
+    {
+        $actor->addMovie($this);
+        $this->actors[] = $actor;
+
+        return $this;
+    }
+
+    public function removeActor(Actor $actor)
+    {
+        $this->actors->removeElement($actor);
+        $actor->setMovie(null);
+
+        return $this;
+    }
 
     public function getId()
     {
@@ -127,16 +148,4 @@ class Movie
         return $this;
     }
 
-    public function getActors()
-    {
-        return $this->actors;
-    }
-
-    public function addActor(Actor $actor)
-    {
-        $actor->addMovie($this);
-        $this->actors[] = $actor;
-
-        return $this;
-    }
 }

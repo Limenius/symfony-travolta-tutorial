@@ -18,20 +18,6 @@ class MovieTest extends TestCase
         $this->assertEquals(2, $result[0]['row']);
     }
 
-    public function testIsSeatAvailable()
-    {
-        $movie = new Movie();
-        $result = $movie->isSeatAvailable(2, 2);
-        $this->assertTrue($result);
-
-        $ticket = new Ticket();
-        $ticket->setRow(2);
-        $ticket->setSeat(2);
-        $movie->addTicket($ticket);
-        $result = $movie->isSeatAvailable(2, 2);
-        $this->assertFalse($result);
-    }
-
     public function testFindNextBestSeatsAvailable()
     {
         $movie = new Movie();
@@ -45,4 +31,17 @@ class MovieTest extends TestCase
         $this->assertEquals(2, $result[0]['row']);
     }
 
+    public function testIsSeatAvailable()
+    {
+        $movie = new Movie();
+        $result = $movie->isSeatAvailable(2, 2);
+        $this->assertTrue($result);
+
+        $ticket = new Ticket();
+        $ticket->setRow(2);
+        $ticket->setSeat(2);
+        $movie->addTicket($ticket);
+        $result = $movie->isSeatAvailable(2, 2);
+        $this->assertFalse($result);
+    }
 }

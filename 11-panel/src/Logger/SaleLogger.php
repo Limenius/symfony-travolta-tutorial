@@ -2,8 +2,8 @@
 
 namespace App\Logger;
 
-use Psr\Log\LoggerInterface;
 use App\Entity\Sale;
+use Psr\Log\LoggerInterface;
 
 class SaleLogger
 {

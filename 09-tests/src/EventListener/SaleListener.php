@@ -2,13 +2,13 @@
 
 namespace App\EventListener;
 
-use Doctrine\ORM\EntityManager;
-use App\Event\SaleEvent;
 use App\Entity\Ticket;
+use App\Event\SaleEvent;
+use Doctrine\ORM\EntityManagerInterface;
 
 class SaleListener
 {
-    public function __construct(EntityManager $em)
+    public function __construct(EntityManagerInterface $em)
     {
         $this->em = $em;
     }

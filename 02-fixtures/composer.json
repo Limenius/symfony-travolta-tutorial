@@ -1,19 +1,19 @@
 {
-    "name": "symfony/skeleton",
     "type": "project",
     "license": "proprietary",
-    "description": "Project description",
     "require": {
-        "php": "^7.0.8",
-        "symfony/console": "^3.3",
-        "symfony/framework-bundle": "^3.3",
+        "php": "^7.1.3",
+        "ext-ctype": "*",
+        "ext-iconv": "*",
+        "symfony/console": "^4.1",
+        "symfony/flex": "^1.0",
+        "symfony/framework-bundle": "^4.1",
+        "symfony/lts": "^4@dev",
         "symfony/orm-pack": "^1.0",
-        "symfony/web-server-bundle": "^3.3",
-        "symfony/yaml": "^3.3"
+        "symfony/yaml": "^4.1"
     },
     "require-dev": {
-        "symfony/flex": "^1.0",
-        "symfony/dotenv": "^3.3"
+        "symfony/dotenv": "^4.1"
     },
     "config": {
         "preferred-install": {
@@ -31,6 +31,13 @@
             "App\\Tests\\": "tests/"
         }
     },
+    "replace": {
+        "symfony/polyfill-ctype": "*",
+        "symfony/polyfill-iconv": "*",
+        "symfony/polyfill-php71": "*",
+        "symfony/polyfill-php70": "*",
+        "symfony/polyfill-php56": "*"
+    },
     "scripts": {
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
@@ -44,13 +51,10 @@
         ]
     },
     "conflict": {
-        "symfony/symfony": "*",
-        "symfony/twig-bundle": "<3.3",
-        "symfony/debug": "<3.3"
+        "symfony/symfony": "*"
     },
     "extra": {
         "symfony": {
-            "id": "01BWMYAY6JKX7G3J2CKAAQCKKM",
             "allow-contrib": false
         }
     }

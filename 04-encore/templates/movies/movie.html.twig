@@ -7,11 +7,9 @@
         <h2>{{ movie.name }}</h2>
         <p>{{ movie.director }}</p>
         <p>{{ movie.year }}</p>
-        <img src="/images/{{movie.picture}}">
         <div class="actors">
             {% for actor in movie.actors %}
                 <div>{{ actor.name}}</div>
-                <img src="/images/{{actor.picture}}">
             {% else %}
                 This movie has no actors.
             {% endfor %}

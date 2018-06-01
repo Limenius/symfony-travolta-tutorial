@@ -1,8 +1,8 @@
 <?php
 namespace App\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
@@ -35,6 +35,22 @@ class Actor
     public function __construct()
     {
         $this->movies = new ArrayCollection();
+    }
+
+    public function addMovie(Movie $movie)
+    {
+        $this->movies[] = $movie;
+    }
+
+    public function removeMovie(Movie $movie)
+    {
+        $this->movies->removeElement($movie);
+        return $this;
+    }
+
+    public function getMovies()
+    {
+        return $this->movies;
     }
 
     public function __toString()
@@ -71,13 +87,4 @@ class Actor
         return $this;
     }
 
-    public function addMovie(Movie $movie)
-    {
-        $this->movies[] = $movie;
-    }
-
-    public function getMovies()
-    {
-        return $this->movies;
-    }
 }

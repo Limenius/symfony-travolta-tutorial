@@ -34,7 +34,7 @@ class MovieControllerTest extends WebTestCase
         $crawler = $client->request('GET', '/enquiry');
 
         $this->assertEquals(
-            200, // or Symfony\Component\HttpFoundation\Response::HTTP_OK
+            200, // or SymfonyComponentHttpFoundationResponse::HTTP_OK
             $client->getResponse()->getStatusCode()
         );
 

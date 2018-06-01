@@ -44,38 +44,21 @@ class Ticket
      */
     private $price;
 
-    /**
-     * Constructor
-     *
-     * @return void
-     */
     public function __construct()
     {
         $this->price = 8;
     }
 
-    /**
-     * @return integer
-     */
     public function getId()
     {
         return $this->id;
     }
 
-    /**
-     * @return integer
-     */
     public function getRow()
     {
         return $this->row;
     }
 
-    /**
-     * setRow
-     *
-     * @param int $row
-     * @return Ticket
-     */
     public function setRow(int $row)
     {
         $this->row = $row;
@@ -83,20 +66,11 @@ class Ticket
         return $this;
     }
 
-    /**
-     * @return integer
-     */
     public function getSeat()
     {
         return $this->seat;
     }
 
-    /**
-     * setSeat
-     *
-     * @param int $seat
-     * @return Ticket
-     */
     public function setSeat(int $seat)
     {
         $this->seat = $seat;
@@ -104,22 +78,11 @@ class Ticket
         return $this;
     }
 
-    /**
-     * getPrice
-     *
-     * @return float
-     */
     public function getPrice()
     {
         return $this->price;
     }
 
-    /**
-     * setPrice
-     *
-     * @param int $price
-     * @return Ticket
-     */
     public function setPrice(int $price)
     {
         $this->price = $price;
@@ -127,22 +90,11 @@ class Ticket
         return $this;
     }
 
-    /**
-     * getMovie
-     *
-     * @return float
-     */
     public function getMovie()
     {
         return $this->movie;
     }
 
-    /**
-     * setMovie
-     *
-     * @param int $movie
-     * @return Ticket
-     */
     public function setMovie(Movie $movie)
     {
         $this->movie = $movie;
@@ -151,22 +103,11 @@ class Ticket
         return $this;
     }
 
-    /**
-     * getSale
-     *
-     * @return float
-     */
     public function getSale()
     {
         return $this->sale;
     }
 
-    /**
-     * setSale
-     *
-     * @param int $sale
-     * @return Ticket
-     */
     public function setSale(Sale $sale)
     {
         $this->sale = $sale;

@@ -1,8 +1,8 @@
 <?php
 namespace App\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\MovieRepository")
@@ -10,6 +10,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class Movie
 {
+
     const ROOM_ROWS = 5;
     const SEATS_PER_ROW = 5;
 
@@ -46,13 +47,14 @@ class Movie
     private $actors;
 
     /**
-    * @ORM\OneToMany(targetEntity="Ticket", mappedBy="movie")
-    */
+     * @ORM\OneToMany(targetEntity="Ticket", mappedBy="movie")
+     */
     private $tickets;
 
-    public function getAvailableSeats()
+    public function __construct()
     {
-        return Movie::ROOM_ROWS * Movie::SEATS_PER_ROW - count($this->tickets);
+        $this->actors = new ArrayCollection();
+        $this->tickets = new ArrayCollection();
     }
 
     public function findNextSeats($num)
@@ -62,7 +64,7 @@ class Movie
         for ($i = 0; $i < Movie::ROOM_ROWS; ++$i) {
             for ($j = 0; $j < Movie::SEATS_PER_ROW; ++$j) {
                 $score = Movie::ROOM_ROWS / 2 - abs(Movie::ROOM_ROWS / 2 - $i) +
-                         Movie::SEATS_PER_ROW / 2 - abs(Movie::SEATS_PER_ROW / 2 - $i);
+                Movie::SEATS_PER_ROW / 2 - abs(Movie::SEATS_PER_ROW / 2 - $i);
                 if ($this->isSeatAvailable($i, $j)) {
                     $seats[] = ['score' => $score, 'row' => $i, 'seat' => $j];
                 }
@@ -72,13 +74,13 @@ class Movie
             if ($a['score'] === $b['score']) {
                 return 0;
             }
-    
+
             return $a['score'] > $b['score'] ? -1 : +1;
         });
-    
+
         return array_slice($seats, 0, $num);
     }
-    
+
     public function isSeatAvailable($row, $seat)
     {
         foreach ($this->tickets as $ticket) {
@@ -86,8 +88,13 @@ class Movie
                 return false;
             }
         }
-    
+
         return true;
+    }
+
+    public function getAvailableSeats()
+    {
+        return Movie::ROOM_ROWS * Movie::SEATS_PER_ROW - count($this->tickets);
     }
 
     public function getTickets()
@@ -102,10 +109,25 @@ class Movie
         return $this;
     }
 
-    public function __construct()
+    public function getActors()
     {
-        $this->actors = new ArrayCollection();
-        $this->tickets = new ArrayCollection();
+        return $this->actors;
+    }
+
+    public function addActor(Actor $actor)
+    {
+        $actor->addMovie($this);
+        $this->actors[] = $actor;
+
+        return $this;
+    }
+
+    public function removeActor(Actor $actor)
+    {
+        $this->actors->removeElement($actor);
+        $actor->setMovie(null);
+
+        return $this;
     }
 
     public function getId()
@@ -161,16 +183,4 @@ class Movie
         return $this;
     }
 
-    public function getActors()
-    {
-        return $this->actors;
-    }
-
-    public function addActor(Actor $actor)
-    {
-        $actor->addMovie($this);
-        $this->actors[] = $actor;
-
-        return $this;
-    }
 }

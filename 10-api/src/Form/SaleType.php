@@ -1,15 +1,14 @@
 <?php
 namespace App\Form;
 
-use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\OptionsResolver\OptionsResolver;
-use App\Validator\Constraint\HasAvailableSeats;
-
 use App\Entity\Sale;
+use App\Validator\Constraint\HasAvailableSeats;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class SaleType extends AbstractType
 {
@@ -32,7 +31,7 @@ class SaleType extends AbstractType
             ])
             ->add('save', SubmitType::class, ['label' => 'Book tickets'])
             ->getForm();
-        ;
+
     }
 
     public function configureOptions(OptionsResolver $resolver)
